@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本组项目 · 第一页</title>
+<style>
+  :root{--paper:#FBFAF7;--ink:#211C16;--ink2:#4A443C;--sub:#675F55;--brand:#A5171C;--hair:#E5DFD4;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  /* ① 导航条：组员 A 改这里 */
+  .nav{display:flex;justify-content:space-between;align-items:baseline;
+       padding:18px 48px;border-bottom:1px solid var(--hair);font-size:14px}
+  .nav b{font-size:16px;letter-spacing:.04em}
+  .nav span{color:var(--sub)}
+  /* ② 标题与简介：组员 B 改这里 */
+  .hero{max-width:900px;margin:0 auto;padding:64px 24px 40px}
+  .hero h1{font-size:34px;line-height:1.3;margin:0 0 14px}
+  .hero p{font-size:16px;color:var(--ink2);margin:0;max-width:640px}
+  /* ③ 三张卡片：组员 C 改这里 */
+  .cards{max-width:900px;margin:0 auto;padding:0 24px 48px;
+         display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{border:1px solid var(--hair);background:#fff;padding:22px 20px}
+  .card .v{font-size:30px;font-weight:800;color:var(--brand);line-height:1.1}
+  .card .l{font-size:14px;color:var(--sub);margin-top:6px}
+  /* ④ 页脚：组员 D 改这里 */
+  .foot{border-top:1px solid var(--hair);padding:20px 48px;font-size:13px;color:var(--sub)}
+</style>
+</head>
+<body>
+
+<!-- ① 导航条 -->
+<nav class="nav">
+  <b>本组项目名（改成你们组的）</b>
+  <span>导航 · 这里放三个链接或三个栏目名</span>
+</nav>
+
+<!-- ② 标题与简介 -->
+<header class="hero">
+  <h1>这一页标题（改成你们组的）</h1>
+  <p>一句话说清这个项目做什么、给谁看。两行以内。</p>
+</header>
+
+<!-- ③ 三张卡片 -->
+<section class="cards">
+  <div class="card"><div class="v">—</div><div class="l">第一个数</div></div>
+  <div class="card"><div class="v">—</div><div class="l">第二个数</div></div>
+  <div class="card"><div class="v">—</div><div class="l">第三个数</div></div>
+</section>
+
+<!-- ④ 页脚 -->
+<footer class="foot">
+  本组成员：待填 · 数据来源与日期：待填
+</footer>
+
+</body>
+</html>
