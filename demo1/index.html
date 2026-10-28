@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的 demo1 · 练习一</title>
+<style>
+  /* ==================== 改这里 ④ 主题色 ====================
+     只改下面 --theme 这一行的色号，其余样式一律不动。
+     可选色号  墨绿 #1F6F5C  靛蓝 #2B4C7E  赭石 #A0601E  黛紫 #5E3C8C  松青 #2F6B6F
+     也可以自己挑，挑深一点的颜色，白底上才看得清字。
+     ========================================================= */
+  :root{
+    --theme:#A5171C;
+  }
+  /* ==================== ④ 到此结束 ==================== */
+
+  :root{
+    --paper:#FBFAF7; --ink:#211C16; --ink2:#4A443C; --sub:#675F55;
+    --hair:#E5DFD4; --white:#FFFFFF;
+    --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+    --sans:"PingFang SC","Microsoft YaHei",sans-serif;
+    --mono:Consolas,"SFMono-Regular",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+       line-height:1.7;border-top:6px solid var(--theme)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 32px}
+
+  /* 顶部：路径与练习说明 */
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;padding:28px 0 36px}
+  .crumb{font-family:var(--mono);font-size:13px;color:var(--sub);padding-top:6px;white-space:nowrap}
+  .crumb b{color:var(--ink);font-weight:600}
+  .tone{margin-top:10px;font-family:var(--sans);display:flex;align-items:center;gap:8px}
+  .tone i{display:inline-block;width:26px;height:12px;background:var(--theme)}
+  .note{max-width:440px;font-size:13px;line-height:1.8;color:var(--ink2);background:var(--white);
+        border:1px solid var(--hair);border-left:3px solid var(--theme);padding:12px 16px 13px}
+  .note b{display:block;font-size:12px;letter-spacing:.14em;color:var(--theme);margin-bottom:2px}
+  .note p{margin:0}
+  .note code{font-family:var(--mono);font-size:12px;background:var(--paper);border:1px solid var(--hair);
+             border-radius:3px;padding:0 4px;white-space:nowrap}
+
+  /* 名片 */
+  .card{position:relative;display:grid;grid-template-columns:5fr 7fr;background:var(--white);
+        border:1px solid var(--hair);box-shadow:0 24px 48px -32px rgba(33,28,22,.40)}
+  .card::before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:8px;background:var(--theme)}
+  .who{position:relative;padding:44px 40px 40px 56px;border-right:1px solid var(--hair)}
+  .group{display:inline-block;margin:0 0 18px;padding:1px 12px;font-size:13px;letter-spacing:.12em;
+         color:var(--theme);border:1px solid currentColor;border-radius:999px}
+  .name{margin:0;font-family:var(--serif);font-size:52px;line-height:1.18;font-weight:700;
+        letter-spacing:.02em;overflow-wrap:anywhere}
+  .role{margin:22px 0 0;font-size:13px;color:var(--sub);letter-spacing:.06em}
+  .role::before{content:"";display:block;width:36px;height:2px;margin-bottom:12px;background:var(--theme)}
+  .wish{position:relative;z-index:0;padding:44px 52px 44px 44px}
+  .wish::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--theme);opacity:.035}
+  .label{margin:0 0 14px;font-size:13px;color:var(--sub);letter-spacing:.12em}
+  .quote{margin:0;font-family:var(--serif);font-size:25px;line-height:1.65}
+  .quote::before{content:"\201C";color:var(--theme);font-weight:700;margin-left:-.5em}
+  .quote::after{content:"\201D";color:var(--theme);font-weight:700}
+
+  /* 三张卡片 */
+  .sec{display:flex;align-items:baseline;gap:6px 16px;flex-wrap:wrap;margin:56px 0 18px}
+  .sec h2{margin:0;font-family:var(--serif);font-size:24px}
+  .sec span{font-size:13px;color:var(--sub)}
+  .jobs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .job{position:relative;background:var(--white);border:1px solid var(--hair);
+       border-top:3px solid var(--theme);padding:22px 22px 24px}
+  .job .n{font-family:var(--serif);font-size:30px;line-height:1;font-weight:700;color:var(--theme)}
+  .job h3{margin:14px 0 8px;font-size:17px;line-height:1.45}
+  .job p{margin:0;font-size:14px;line-height:1.8;color:var(--ink2)}
+
+  /* 页面上的 ①–⑤ 小圆标，对应源码里的「改这里」 */
+  .mk{position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;
+      border:1px solid var(--hair);background:var(--paper);color:var(--sub);
+      font:600 11px/20px var(--sans);text-align:center}
+  .sec .mk,.foot .mk,.tone .mk{position:static;display:inline-block;vertical-align:1px;margin-left:6px}
+  .tone .mk{margin-left:0}
+
+  /* 页脚 */
+  .foot{display:flex;justify-content:space-between;gap:6px 24px;flex-wrap:wrap;margin-top:56px;
+        padding:18px 0 40px;border-top:1px solid var(--hair);font-size:13px;color:var(--sub)}
+
+  @media (max-width:720px){
+    .wrap{padding:0 16px}
+    .top{flex-direction:column;gap:14px;padding:20px 0 24px}
+    .note{max-width:none}
+    .card{grid-template-columns:1fr}
+    .who{padding:30px 22px 26px 32px;border-right:0;border-bottom:1px solid var(--hair)}
+    .wish{padding:26px 22px 32px 32px}
+    .name{font-size:40px}
+    .quote{font-size:20px}
+    .sec{margin:40px 0 14px}
+    .sec h2{font-size:21px}
+    .jobs{grid-template-columns:1fr;gap:14px}
+    .foot{flex-direction:column;margin-top:40px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="crumb">
+    <div><b>zhangyf29 / mf-test</b> / demo1</div>
+    <div class="tone"><i></i>主题色<span class="mk">4</span></div>
+  </div>
+  <aside class="note">
+    <b>练习一用页</b>
+    <p>每人在自己的分支 <code>stu/你的GitHub用户名</code> 上改，改完向 <code>zhangyf29/mf-test</code> 的 main 发 Pull Request。要改的五处在源码里标了「改这里」，页面上对应 ①–⑤，其他地方不动。</p>
+  </aside>
+</header>
+
+<main>
+
+  <section class="card">
+    <div class="who">
+      <span class="mk">1</span>
+      <!-- ==================== 改这里 ① 昵称与组号 ====================
+           把「第 N 组」换成你的组号，「你的昵称」换成同学认得出的昵称。
+           仓库是公开的，只写昵称，不写全名、学号、手机号。
+           ============================================================ -->
+      <p class="group">第 N 组</p>
+      <h1 class="name">你的昵称</h1>
+      <!-- ==================== ① 到此结束 ==================== -->
+      <p class="role">练习一 · 我的 demo1</p>
+    </div>
+    <div class="wish">
+      <span class="mk">2</span>
+      <p class="label">我最想让智能体替我做的一件事</p>
+      <!-- ==================== 改这里 ② 一句话 ====================
+           写一件你最想交给智能体的事，二十到四十个字，写成一个具体动作。
+           页面会自动加引号，自己不用加。不写公司内部信息，不写别人的名字。
+           ========================================================= -->
+      <p class="quote">写一件你最想交给智能体的事，比如每天收盘后读完持仓公司的公告，有异常就提醒我。</p>
+      <!-- ==================== ② 到此结束 ==================== -->
+    </div>
+  </section>
+
+  <div class="sec">
+    <h2>交给智能体的三件事<span class="mk">3</span></h2>
+    <span>每张写一件具体工作，交给它什么材料，要它交回什么</span>
+  </div>
+
+  <!-- ==================== 改这里 ③ 三张卡片 ====================
+       下面三张现在是示例，换成你自己想交给智能体的三件具体工作。
+       每张只改 h3 和 p 两行，h3 写四到八个字的名字，p 写一句话说清交什么、要什么。
+       编号 01、02、03 不用改。
+       ========================================================== -->
+  <section class="jobs">
+    <div class="job">
+      <div class="n">01</div>
+      <h3>读晨报</h3>
+      <p>每周一读完三家券商的晨报，挑出跟我关注行业有关的五条，每条注明出处。</p>
+    </div>
+    <div class="job">
+      <div class="n">02</div>
+      <h3>对数字</h3>
+      <p>把研报里的营收、净利润和年报原文逐个对一遍，对不上的列成一张表。</p>
+    </div>
+    <div class="job">
+      <div class="n">03</div>
+      <h3>理文献</h3>
+      <p>这周下载的论文，每篇按问题、数据、方法、结论各写一行，存进笔记。</p>
+    </div>
+  </section>
+  <!-- ==================== ③ 到此结束 ==================== -->
+
+</main>
+
+<footer class="foot">
+  <span>
+    <!-- ==================== 改这里 ⑤ 更新日期 ====================
+         把 YYYY-MM-DD 换成你提交那天的日期，比如 2026-10-28。
+         ========================================================== -->
+    更新于 YYYY-MM-DD
+    <!-- ==================== ⑤ 到此结束 ==================== -->
+    <span class="mk">5</span>
+  </span>
+  <span>金融 AI 智能体设计与应用 · 练习一 · 仓库公开，只写昵称</span>
+</footer>
+
+</div>
+</body>
+</html>
